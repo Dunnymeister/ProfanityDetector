@@ -503,6 +503,15 @@ namespace Ebooks.ProfanityDetector.Tests.Unit
         }
 
         [Fact]
+        public void ContainsProfanity_InputContainsProhibitedTermWithTrailingNumbers_ReturnsTrue()
+        {
+            var filter = new ProfanityFilter();
+            filter.Terms.Prohibited.Add("cunt");
+            var result = filter.ContainsProfanity("cunt123");
+            Assert.True(result);
+        }
+        
+        [Fact]
         public void ContainsProfanity_InputContainsTwoProhibitedTermsThatAreAlsoPermittedWords_ReturnsFalse()
         {
             var filter = new ProfanityFilter();

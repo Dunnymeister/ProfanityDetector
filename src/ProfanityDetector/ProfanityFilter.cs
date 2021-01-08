@@ -96,11 +96,11 @@ namespace Ebooks.ProfanityDetector
                         continue;
                     }
 
-                    // The match at this point contains prohibited words
-                    // embedded in larger word
+                    // The match at this point contains prohibited words embedded in larger word
                     // This means that Scunthorpe will be flagged when it's clearly ok
-                    // and fucking will be flagged correctly
-                    var adjectiveEndings = new List<string>() { "ing", "ed", "s", "er" };
+                    // but fucking will be flagged correctly
+                    // This scenario is hard to deal with but let's do our best
+                    var adjectiveEndings = new List<string>() { "ing", "ed", "s", "er", "y", "a" };
                     foreach (var adjectiveEnding in adjectiveEndings)
                     {
                         var test = $"{prohibitedTerm}{adjectiveEnding}";
@@ -109,6 +109,15 @@ namespace Ebooks.ProfanityDetector
                             potentials.Add(m.Value);
                             break;
                         }
+                    }
+
+                    // Double check that the phrase isn't just surrounded by garbage characters                           
+                    var regex = new Regex(@"[^a-zA-Z_]*", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+                    var result = regex.Replace(m.Value, "");
+                    if (prohibitedTerm.Equals(result, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        potentials.Add(m.Value);
+                        break;
                     }
                 }
             }
