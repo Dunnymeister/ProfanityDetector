@@ -29,15 +29,9 @@ using ProfanityDetector.Interfaces;
 
 namespace ProfanityDetector
 {
-    /// <summary>
-    ///
-    /// This class will detect profanity and racial slurs contained within some text and return an indication flag.
-    /// All words are treated as case insensitive.
-    ///
-    /// </summary>
+    /// <inheritdoc />
     public class ProfanityFilter : ProfanityBase, IProfanityFilter
     {
-
         /// <summary>
         /// Default constructor that loads up the default profanity list.
         /// </summary>

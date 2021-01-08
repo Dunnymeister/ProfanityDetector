@@ -22,6 +22,10 @@ using System.Collections.ObjectModel;
 
 namespace ProfanityDetector.Interfaces
 {
+    /// <summary>
+    /// Detects profanity and racial slurs contained within some text and return an indication flag.<br />
+    /// All words are treated as case insensitive.
+    /// </summary>
     public interface IProfanityFilter
     {
         bool IsProfanity(string word);
