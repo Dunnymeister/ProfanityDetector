@@ -21,3 +21,13 @@ jobs:
       run: dotnet build ./src/Ebooks.ProfanityDetector --configuration Release --no-restore
     - name: Test
       run: dotnet test ./src/Ebooks.ProfanityDetector --no-restore --verbosity normal
+    - name: Nerdbank.GitVersioning
+      id: nbgv
+      uses: dotnet/nbgv@v0.3.1
+    - name: Publish Ebooks.ProfanityDetector to NuGet
+      uses: brandedoutcast/publish-nuget@v2.5.5
+      with:
+        PACKAGE_NAME: Ebooks.ProfanityDetector
+        VERSION_STATIC: ${{ steps.nbgv.outputs.NuGetPackageVersion }}
+        PROJECT_FILE_PATH: src/ProfanityDetector/Ebooks.ProfanityDetector.csproj
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}} 
