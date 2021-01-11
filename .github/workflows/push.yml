@@ -19,7 +19,7 @@ jobs:
       run: dotnet test ./src/Ebooks.ProfanityDetector.sln --no-restore --verbosity normal
     - name: Nerdbank.GitVersioning
       id: nbgv
-      uses: dotnet/nbgv@v0.3.1
+      uses: dotnet/nbgv@v0.4.0
     - name: Publish Ebooks.ProfanityDetector to NuGet
       uses: brandedoutcast/publish-nuget@v2.5.5
       with:
