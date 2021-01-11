@@ -6,6 +6,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ebooks.ProfanityDetector", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ebooks.ProfanityDetector.Tests.Unit", "ProfanityDetector.Tests.Unit\Ebooks.ProfanityDetector.Tests.Unit.csproj", "{62DD9B6C-BCEB-44FA-BAFD-3D155A318D9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebooks.ProfanityDetectorExtensions", "Ebooks.ProfanityDetectorExtensions\Ebooks.ProfanityDetectorExtensions.csproj", "{4BACCE2A-85FA-4E1F-AAF1-8E7B97E75163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebooks.ProfanityDetectorExtensions.Tests.Unit", "Ebooks.ProfanityDetectorExtensions.Tests.Unit\Ebooks.ProfanityDetectorExtensions.Tests.Unit.csproj", "{AC449EFD-F2C8-411E-99AE-49D4B22EB2E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{62DD9B6C-BCEB-44FA-BAFD-3D155A318D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62DD9B6C-BCEB-44FA-BAFD-3D155A318D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62DD9B6C-BCEB-44FA-BAFD-3D155A318D9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BACCE2A-85FA-4E1F-AAF1-8E7B97E75163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BACCE2A-85FA-4E1F-AAF1-8E7B97E75163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BACCE2A-85FA-4E1F-AAF1-8E7B97E75163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BACCE2A-85FA-4E1F-AAF1-8E7B97E75163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC449EFD-F2C8-411E-99AE-49D4B22EB2E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC449EFD-F2C8-411E-99AE-49D4B22EB2E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC449EFD-F2C8-411E-99AE-49D4B22EB2E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC449EFD-F2C8-411E-99AE-49D4B22EB2E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
