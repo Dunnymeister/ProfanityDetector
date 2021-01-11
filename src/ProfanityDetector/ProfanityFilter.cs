@@ -1,24 +1,4 @@
-﻿/*
-MIT License
-Copyright (c) 2019
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -37,21 +17,18 @@ namespace Ebooks.ProfanityDetector
         public ProfanityFilter()
         {
             Terms = new Terms();
-            Grawlixes = new Dictionary<string, string>();
-            Grawlixes.Add("$", "s");
-            Grawlixes.Add("5", "s");
-            Grawlixes.Add("!", "i");
-            Grawlixes.Add("7", "t");
+            Grawlixes = new Dictionary<string, string>
+            {
+                { "$", "s" },
+                { "5", "s" },
+                { "!", "i" },
+                { "7", "t" }
+            };
         }
 
         public ProfanityFilter(Terms terms)
         {
-            if (terms == null)
-            {
-                throw new ArgumentNullException("Parameter terms must not be null");
-            }
-
-            Terms = terms;
+            Terms = terms ?? throw new ArgumentNullException("Parameter terms must not be null");
         }
 
         public bool IsProfanity(string term)
@@ -257,54 +234,6 @@ namespace Ebooks.ProfanityDetector
 
             return censored;
         }
-
-        private List<string> FilterSwearListForCompleteWordsOnly(string sentence, List<string> swearList)
-        {
-            List<string> filteredSwearList = new List<string>();
-            StringBuilder tracker = new StringBuilder(sentence);
-
-            foreach (string word in swearList.OrderByDescending(x => x.Length))
-            {
-                (int, int, string)? result = (0, 0, "");
-                var multiWord = word.Split(' ');
-
-                if (multiWord.Length == 1)
-                {
-                    do
-                    {
-                        result = GetCompleteWord(tracker.ToString(), word);
-
-                        if (result != null)
-                        {
-                            if (result.Value.Item3 == word)
-                            {
-                                filteredSwearList.Add(word);
-
-                                for (int i = result.Value.Item1; i < result.Value.Item2; i++)
-                                {
-                                    tracker[i] = '*';
-                                }
-                                break;
-                            }
-
-                            for (int i = result.Value.Item1; i < result.Value.Item2; i++)
-                            {
-                                tracker[i] = '*';
-                            }
-                        }
-                    }
-                    while (result != null);
-                }
-                else
-                {
-                    filteredSwearList.Add(word);
-                    tracker.Replace(word, " ");
-                }
-            }
-
-            return filteredSwearList;
-        }
-
         private List<string> FilterWordListByAllowList(string[] words)
         {
             List<string> postAllowList = new List<string>();

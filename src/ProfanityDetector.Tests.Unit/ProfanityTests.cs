@@ -1,6 +1,6 @@
 /*
 MIT License
-Copyright (c) 2019 
+Copyright (c) 2019 stephenhaunts
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -18,7 +18,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -37,8 +36,8 @@ namespace Ebooks.ProfanityDetector.Tests.Unit
         public void IsProfanity_TermContainsProhibitedTerm_ReturnsTrue()
         {
             var filter = new ProfanityFilter();
-            filter.Terms.Prohibited.Add("arsehole");
-            Assert.True(filter.IsProfanity("arsehole"));
+            filter.Terms.Prohibited.Add("blue");
+            Assert.True(filter.IsProfanity("blue"));
         }
 
         [Fact]
@@ -141,7 +140,23 @@ namespace Ebooks.ProfanityDetector.Tests.Unit
         }
 
         [Fact]
-        public void GetProfanities_InputContainsScunthorpeProblem_ReturnsTermCorrectly()
+        public void GetProfanities_InputContainsTwoWordsJoinedByPunctuation_ReturnsTermsCorrectly()
+        {
+            var filter = new ProfanityFilter();
+            filter.Terms.Prohibited.Add("green");
+            filter.Terms.Prohibited.Add("blue");
+            filter.Terms.Prohibited.Add("red");
+
+            var prohibitedTerms = filter.GetProfanities("A secondary color is formed by the sum of two primary colors of equal intensity: cyan is green+blue, magenta is blue+red, and yellow is red+green.");
+
+            Assert.Equal(3, prohibitedTerms.Count);
+            Assert.Contains("green", prohibitedTerms);
+            Assert.Contains("blue", prohibitedTerms);
+            Assert.Contains("red", prohibitedTerms);
+        }
+
+        [Fact]
+        public void GetProfanities_InputContainsScunthorpeProblem_ReturnsTermsCorrectly()
         {
             var filter = new ProfanityFilter();
             filter.Terms.Prohibited.Add("fucking");
@@ -215,6 +230,17 @@ namespace Ebooks.ProfanityDetector.Tests.Unit
         }
 
         [Fact]
+        public void Censor_InputContainsProhibitedTerm_ReturnsCensoredString()
+        {
+            // This test is used in the main README.md so we should always
+            // ensure it passes
+            var filter = new ProfanityFilter();
+            filter.Terms.Prohibited.Add("world");
+            var result = filter.Censor("Hello, world!");
+            Assert.Equal("Hello, *****!", result);
+        }
+
+        [Fact]
         public void Censor_HasPermittedTermsAndInputContainsProhibitedTerms_ReturnsCensoredString()
         {
             var filter = new ProfanityFilter();
@@ -232,7 +258,7 @@ namespace Ebooks.ProfanityDetector.Tests.Unit
         }
 
         [Fact]
-        public void Censor_InputContainsProhibitedTerms_ReturnsCensoredString()
+        public void Censor_InputContainsMultipleProhibitedTerms_ReturnsCensoredString()
         {
             var filter = new ProfanityFilter();
             filter.Terms.Prohibited.Add("fuck");
@@ -259,19 +285,6 @@ namespace Ebooks.ProfanityDetector.Tests.Unit
 
             var result = filter.Censor("I Fucking Live In Scunthorpe And It Is A Shit Place To Live. I Would Much Rather Live In Penistone You Great Big Cock Fuck.", '*');
             const string expected = "I ******* Live In Scunthorpe And It Is A **** Place To Live. I Would Much Rather Live In Penistone You Great Big **** ****.";
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void Censor_InputContainsMultipleProhibitedTerms_ReturnsCensoredString()
-        {
-            var filter = new ProfanityFilter();
-            filter.Terms.Prohibited.Add("2 girls 1 cup");
-            filter.Terms.Prohibited.Add("twatting");
-
-            var result = filter.Censor("2 girls 1 cup, is my favourite twatting video.");
-            const string expected = "* ***** * ***, is my favourite ******** video.";
 
             Assert.Equal(expected, result);
         }
@@ -363,10 +376,10 @@ namespace Ebooks.ProfanityDetector.Tests.Unit
         public void Censor_InputContainsProhibitedTermsAndAlternateReplacementCharProvided_ReturnsCensoredString()
         {
             var filter = new ProfanityFilter();
-            filter.Terms.Prohibited.Add("2 girls 1 cup");
-            filter.Terms.Prohibited.Add("twatting");
-            var result = filter.Censor("2 girls 1 cup, is my favourite twatting video.", '@');
-            const string expected = "@ @@@@@ @ @@@, is my favourite @@@@@@@@ video.";
+            filter.Terms.Prohibited.Add("stealeth");
+            filter.Terms.Prohibited.Add("rend");
+            var result = filter.Censor("For him that stealeth, or borroweth and returneth not, this book from its owner, let it change into a serpent in his hand & rend him.", '@');
+            const string expected = "For him that @@@@@@@@, or borroweth and returneth not, this book from its owner, let it change into a serpent in his hand & @@@@ him.";
 
             Assert.Equal(expected, result);
         }

@@ -6,9 +6,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ebooks.ProfanityDetector", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ebooks.ProfanityDetector.Tests.Unit", "ProfanityDetector.Tests.Unit\Ebooks.ProfanityDetector.Tests.Unit.csproj", "{62DD9B6C-BCEB-44FA-BAFD-3D155A318D9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebooks.ProfanityDetectorExtensions", "Ebooks.ProfanityDetectorExtensions\Ebooks.ProfanityDetectorExtensions.csproj", "{4BACCE2A-85FA-4E1F-AAF1-8E7B97E75163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ebooks.ProfanityDetector.Extensions", "Ebooks.ProfanityDetectorExtensions\Ebooks.ProfanityDetector.Extensions.csproj", "{4BACCE2A-85FA-4E1F-AAF1-8E7B97E75163}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ebooks.ProfanityDetectorExtensions.Tests.Unit", "Ebooks.ProfanityDetectorExtensions.Tests.Unit\Ebooks.ProfanityDetectorExtensions.Tests.Unit.csproj", "{AC449EFD-F2C8-411E-99AE-49D4B22EB2E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ebooks.ProfanityDetectorExtensions.Tests.Unit", "Ebooks.ProfanityDetectorExtensions.Tests.Unit\Ebooks.ProfanityDetectorExtensions.Tests.Unit.csproj", "{AC449EFD-F2C8-411E-99AE-49D4B22EB2E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
