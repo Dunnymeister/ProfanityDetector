@@ -2,24 +2,22 @@ name: .NET Core
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 2.2.103
+        dotnet-version: 5.0.101
     - name: Install dependencies
-      run: dotnet restore ./ProfanityFilter
+      run: dotnet restore ./src/Ebooks.ProfanityDetector
     - name: Build
-      run: dotnet build ./ProfanityFilter --configuration Release --no-restore
+      run: dotnet build ./src/Ebooks.ProfanityDetector --configuration Release --no-restore
     - name: Test
-      run: dotnet test ./ProfanityFilter --no-restore --verbosity normal
+      run: dotnet test ./src/Ebooks.ProfanityDetector --no-restore --verbosity normal
