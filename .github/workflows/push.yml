@@ -12,11 +12,11 @@ jobs:
       with:
         dotnet-version: 5.0.101
     - name: Install dependencies
-      run: dotnet restore ./src/Ebooks.ProfanityDetector
+      run: dotnet restore ./src/Ebooks.ProfanityDetector.sln
     - name: Build
-      run: dotnet build ./src/Ebooks.ProfanityDetector --configuration Release --no-restore
+      run: dotnet build ./src/Ebooks.ProfanityDetector.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test ./src/Ebooks.ProfanityDetector --no-restore --verbosity normal
+      run: dotnet test ./src/Ebooks.ProfanityDetector.sln --no-restore --verbosity normal
     - name: Nerdbank.GitVersioning
       id: nbgv
       uses: dotnet/nbgv@v0.3.1
