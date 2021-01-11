@@ -33,24 +33,4 @@ jobs:
         PACKAGE_NAME: Ebooks.ProfanityDetector.Extensions
         VERSION_STATIC: ${{ steps.nbgv.outputs.NuGetPackageVersion }}
         PROJECT_FILE_PATH: src/Ebooks.ProfanityDetectorExtensions/Ebooks.ProfanityDetector.Extensions.csproj
-        NUGET_KEY: ${{secrets.NUGET_API_KEY}} 
-
-name: Build and Test on Pull Request
-on:
-  pull_request:
-    branches: [ master ]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.101
-    - name: Install dependencies
-      run: dotnet restore ./src/Ebooks.ProfanityDetector
-    - name: Build
-      run: dotnet build ./src/Ebooks.ProfanityDetector --configuration Release --no-restore
-    - name: Test
-      run: dotnet test ./src/Ebooks.ProfanityDetector --no-restore --verbosity normal
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
