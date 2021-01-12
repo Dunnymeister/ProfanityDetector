@@ -10,7 +10,7 @@ namespace Ebooks.ProfanityDetector
         {
             // Read out the default filter object
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "Ebooks.ProfanityDetectorExtensions.Resources.en_US.Terms.json";
+            var resourceName = "Ebooks.ProfanityDetector.Extensions.Resources.en_US.Terms.json";
             string result;
             using (var stream = assembly.GetManifestResourceStream(resourceName))
             using (var reader = new StreamReader(stream))
