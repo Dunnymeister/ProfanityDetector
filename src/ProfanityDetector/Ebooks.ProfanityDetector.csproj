@@ -18,7 +18,7 @@
     <AssemblyName>Ebooks.ProfanityDetector</AssemblyName>
     <Company>eBooks.com Pty Ltd</Company>
     <RepositoryUrl>https://github.com/ebooks-com/ProfanityDetector</RepositoryUrl>
-    <PackageLicenseExpression>https://licenses.nuget.org/MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

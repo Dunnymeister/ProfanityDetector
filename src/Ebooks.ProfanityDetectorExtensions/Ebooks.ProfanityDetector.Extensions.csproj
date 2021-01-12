@@ -8,10 +8,11 @@
     <Company>Stephen Haunts, eBooks.com</Company>
     <Description>Useful extension methods to populate a ProfanityDetector with a sample list of common profanity</Description>
     <Copyright />
-    <PackageLicenseExpression>https://licenses.nuget.org/MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/ebooks-com/ProfanityDetector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ebooks-com/ProfanityDetector</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
